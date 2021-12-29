@@ -79,9 +79,9 @@ def pytest_sessionfinish(session):
     report2 = session.config.getoption('--report')
 
     if report2:
-        test_result['title'] = session.config.getoption('--title') or '测试报告'
-        test_result['tester'] = session.config.getoption('--tester') or '小测试'
-        test_result['desc'] = session.config.getoption('--desc') or '无'
+        test_result['title'] = session.config.getoption('--title') or '測試報告'
+        test_result['tester'] = session.config.getoption('--tester') or 'QA'
+        test_result['desc'] = session.config.getoption('--desc') or '無'
         templates_name = session.config.getoption('--template') or '1'
         name = report2
     else:

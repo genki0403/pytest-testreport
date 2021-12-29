@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>测试报告</title>
+    <title>測試報告</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!--    页面样式-->
@@ -143,23 +143,23 @@
 
 <!--汇总信息-->
 <div class="summary">
-    <p class="text-left text-success">测试结果汇总</p>
+    <p class="text-left text-success">測試結果彙整</p>
     <div class="left">
         <ul class="list-group">
             <li class="list-group-item">
-                <button type="button" class="btn btn-success">测试人员</button>
+                <button type="button" class="btn btn-success">測試人員</button>
                 <span class="text-dark">{{ tester }}</span>
             </li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-success">开始时间</button>
+                <button type="button" class="btn btn-success">開始時間</button>
                 <span class="text-dark">{{ begin_time }}</span>
             </li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-success">执行时间</button>
+                <button type="button" class="btn btn-success">執行時間</button>
                 <span class="text-dark">{{ run_time }}</span>
             </li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-success">用例总数</button>
+                <button type="button" class="btn btn-success">用例總數</button>
                 <span class="text-dark">{{ all }}</span>
             </li>
 
@@ -174,15 +174,15 @@
                 <span class="text-success">{{ passed }}</span>
             </li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-danger">失败用例</button>
+                <button type="button" class="btn btn-danger">失敗用例</button>
                 <span class="text-warning">{{ failed }}</span>
             </li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-warning">错误用例</button>
+                <button type="button" class="btn btn-warning">錯誤用例</button>
                 <span class="text-danger">{{ error }}</span>
             </li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <button type="button" class="btn btn-secondary">跳過用例</button>
                 <span class="text-secondary">{{ skipped }}</span>
             </li>
         </ul>
@@ -199,7 +199,7 @@
 
 <!--测试图表-->
 <div class="char">
-    <p class="text-left text-success">图表展示</p>
+    <p class="text-left text-success">圖表展示</p>
     <div id="char2" style="width: 49%;height: 400px;float: left"></div>
     <div id="char" style="width: 49%;height: 400px ;float: left"></div>
 </div>
@@ -207,15 +207,15 @@
 <!--详细信息-->
 <div class="test_info">
 
-    <p class="text-left text-success">详细信息</p>
+    <p class="text-left text-success">詳細信息</p>
     <div class="table_data">
 
         <table class="table">
             <thead class="bg-success text-light">
             <tr>
-                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 5%;padding: 0">標號</th>
                 <th scope="col" style="width: 20%;padding: 0">
-                    <span>用例模块</span>
+                    <span>用例模塊</span>
                     <select id="testClass">
                         <option>所有</option>
                         {% for foo in testModules %}
@@ -223,22 +223,22 @@
                         {% endfor %}
                     </select>
                 </th>
-                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 15%;padding: 0">測試方法</th>
                 <th scope="col" style="width: 20%;padding: 0">用例描述</th>
-                <th scope="col" style="width: 10%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 10%;padding: 0">執行時間</th>
                 <th scope="col" style="width: 20%;padding: 0">
 
-                    <span>执行结果</span>
+                    <span>執行結果</span>
                     <select id="testResult">
                         <option>所有</option>
                         <option class="text-success">成功</option>
-                        <option class="text-warning">失败</option>
-                        <option class="text-danger">错误</option>
-                        <option class="text-info">跳过</option>
+                        <option class="text-warning">失敗</option>
+                        <option class="text-danger">錯誤</option>
+                        <option class="text-info">跳過</option>
                     </select>
 
                 </th>
-                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+                <th scope="col" style="width: 10%;padding: 0">詳細信息</th>
             </tr>
             </thead>
             <tbody>
@@ -253,19 +253,19 @@
                 <td>{{ foo.duration }}</td>
                 {% if foo.outcome == 'passed' %}
                     {% if foo.rerun %}
-                    <td style="color: #fa6f6f">通过</td>
+                    <td style="color: #fa6f6f">通過</td>
                     {% else %}
-                    <td class="text-success">通过</td>
+                    <td class="text-success">通過</td>
                     {% endif %}
                 {% elif foo.outcome == 'failed' %}
-                <td class="text-warning">失败</td>
+                <td class="text-warning">失敗</td>
                 {% elif foo.outcome == 'error' %}
-                <td class="text-danger">错误</td>
+                <td class="text-danger">錯誤</td>
                 {% else %}
-                <td class="text-info">跳过</td>
+                <td class="text-info">跳過</td>
                 {% endif %}
                 <td>
-                    <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    <button type="button" class="btn btn-success btn_info">查看詳情</button>
                 </td>
             </tr>
             <tr class="test_log">
@@ -275,22 +275,22 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home"
-                                       aria-selected="true" style="padding: 0 16px">运行日志</a>
+                                       aria-selected="true" style="padding: 0 16px">運行日誌</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" data-toggle="tab" role="tab" aria-controls="profile"
-                                       aria-selected="false" style="padding: 0 16px">调试输出</a>
+                                       aria-selected="false" style="padding: 0 16px">調適輸出</a>
                                 </li>
                                 {% if foo.longreprtext %}
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" data-toggle="tab" role="tab" aria-controls="contact"
-                                       aria-selected="false" style="padding: 0 16px">异常信息</a>
+                                       aria-selected="false" style="padding: 0 16px">異常訊息</a>
                                 </li>
                                 {% endif %}
                                 {% if foo.rerun %}
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" data-toggle="tab" role="tab" aria-controls="contact"
-                                       aria-selected="false" style="padding: 0 16px"><span style="color: #ff3c00">重运行次数:{{foo.rerun}}</span></a>
+                                       aria-selected="false" style="padding: 0 16px"><span style="color: #ff3c00">重運行次數:{{foo.rerun}}</span></a>
                                 </li>
                                 {% endif %}
 
@@ -366,15 +366,15 @@
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.text-success').show()
 
-            } else if (res === '失败') {
+            } else if (res === '失敗') {
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.text-warning').show()
 
-            } else if (res === '错误') {
+            } else if (res === '錯誤') {
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.text-danger').show()
 
-            } else if (res === '跳过') {
+            } else if (res === '跳過') {
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.text-info').show()
             }
@@ -385,13 +385,13 @@
             } else if (res === '成功') {
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
-            } else if (res === '失败') {
+            } else if (res === '失敗') {
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
-            } else if (res === '错误') {
+            } else if (res === '錯誤') {
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
-            } else if (res === '跳过') {
+            } else if (res === '跳過') {
                 tbodyTr.hide();
                 tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
             }
@@ -431,7 +431,7 @@
         legend: {
             orient: 'vertical',
             left: 10,
-            data: ['通过', '失败', '错误', '跳过']
+            data: ['通過', '失敗', '錯誤', '跳過']
         },
         series: [
             {
@@ -454,10 +454,10 @@
                     show: false
                 },
                 data: [
-                    {value: {{passed}}, name: '通过'},
-                    {value: {{failed}}, name: '失败'},
-                    {value: {{error}}, name: '错误'},
-                    {value: {{skipped}}, name: '跳过'}
+                    {value: {{passed}}, name: '通過'},
+                    {value: {{failed}}, name: '失敗'},
+                    {value: {{error}}, name: '錯誤'},
+                    {value: {{skipped}}, name: '跳過'}
                 ]
             }
         ]
@@ -477,7 +477,7 @@
                 name: '测试结果',
                 type: 'gauge',
                 detail: {formatter: '{{pass_rate}}%'},
-                data: [{value: '{{pass_rate}}', name: '用例通过率'}],
+                data: [{value: '{{pass_rate}}', name: '用例通過率'}],
                 axisLine: {
                     lineStyle: {
                         color: [
