@@ -46,7 +46,7 @@ def pytest_runtest_logreport(report):
 
 def pytest_sessionstart(session):
     start_ts = datetime.datetime.now()
-    test_result["start_time"] = start_ts.strftime("%Y-%m-%d %H:%M:%S")
+    test_result["start_time"] = start_ts.timestamp()
     test_result["begin_time"] = start_ts.strftime("%Y-%m-%d %H:%M:%S")
 
 
