@@ -20,7 +20,8 @@ test_result = {
     "run_time": 0,
     "begin_time": "",
     "all": 0,
-    "testModules": set()
+    "testModules": set(),
+    "tag": ""
 }
 
 
@@ -74,6 +75,7 @@ def handle_history_data(report_dir, test_result):
         json.dump(history, f, ensure_ascii=True)
     return history
 
+
 def pytest_sessionfinish(session):
     """在整个测试运行完成之后调用的钩子函数,可以在此处生成测试报告"""
     report2 = session.config.getoption('--report')
@@ -82,6 +84,7 @@ def pytest_sessionfinish(session):
         test_result['title'] = session.config.getoption('--title') or '測試報告'
         test_result['tester'] = session.config.getoption('--tester') or 'QA'
         test_result['desc'] = session.config.getoption('--desc') or '無'
+        test_result['tag'] = session.config.getoption('--desc') or 'All'
         templates_name = session.config.getoption('--template') or '1'
         name = report2
     else:
@@ -96,7 +99,11 @@ def pytest_sessionfinish(session):
         pass
     else:
         os.mkdir('reports')
-    file_name = os.path.join('reports', file_name)
+    save_path = "reports/{}".format(test_result['desc']+"_"+test_result['tag'])
+    if not os.path.isdir(save_path):
+        os.mkdir(save_path)
+
+    file_name = os.path.join(save_path, file_name)
     test_result["run_time"] = '{:.6f} S'.format(time.time() - test_result["start_time"])
     test_result['all'] = len(test_result['cases'])
     if test_result['all'] != 0:
@@ -104,7 +111,7 @@ def pytest_sessionfinish(session):
     else:
         test_result['pass_rate'] = 0
     # 保存历史数据
-    test_result['history'] = handle_history_data('reports', test_result)
+    test_result['history'] = handle_history_data(save_path, test_result)
     # 渲染报告
     template_path = os.path.join(os.path.dirname(__file__), './templates')
     env = Environment(loader=FileSystemLoader(template_path))
@@ -116,7 +123,6 @@ def pytest_sessionfinish(session):
     report = template.render(test_result)
     with open(file_name, 'wb') as f:
         f.write(report.encode('utf8'))
-
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -166,6 +172,13 @@ def pytest_addoption(parser):
     )
     group.addoption(
         "--template",
+        action="store",
+        metavar="path",
+        default=None,
+        help="pytest-testreport Generate a template of the report",
+    )
+    group.addoption(
+        "--tag",
         action="store",
         metavar="path",
         default=None,
